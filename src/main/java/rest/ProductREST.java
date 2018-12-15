@@ -1,18 +1,16 @@
 package rest;
 
-
 import model.Product;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("product")
-public class ProdutREST {
+public class ProductREST {
 
-    @RequestMapping(method = RequestMethod.GET, path = "/products")
-    public Product getProducts() {
-        return new Product();
+    @RequestMapping(value = "/product", method = RequestMethod.GET)
+    public Product getProduct(){
+        // Ainda não está convertendo direito pra JSON
+        return new Product("Teste");
     }
-
 }
