@@ -26,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     private Product updateOrCreate(Product product) {
         categoryService.SaveOrUpdate(product.getCategory());
+        productRepository.save(product);
     	return product;
     }
     
