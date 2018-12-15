@@ -11,6 +11,6 @@ public class ProductREST {
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public Product getProduct(){
         // Ainda não está convertendo direito pra JSON
-        return new Product("Teste");
+        return new Product("Pasta", 3.50, "/assets/pasta", "Melhor pasta de dente", 0L);
     }
 }
