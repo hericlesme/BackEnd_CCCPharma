@@ -28,7 +28,8 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
     
-    private LocalDate expirationDate;
+    private String producer;
+    private boolean expirationDate;
     private int stock;
 
     @ManyToMany(fetch = FetchType.LAZY,
@@ -41,13 +42,14 @@ public class Product {
     
 	public Product() {}
     
-    public Product(String name, double price, String image_path, String description, Category category, LocalDate expirationDate, int stock) {
+    public Product(String name, double price, String image_path, String description, Category category, String producer, boolean expirationDate, int stock) {
         this.name = name;
         this.price = price;
         this.image_path = image_path;
         this.description = description;
         this.category = category;
         this.expirationDate = expirationDate;
+        this.producer = producer;
     }
     
     public Long getId() {
@@ -94,11 +96,11 @@ public class Product {
 		this.category = category;
 	}
 
-	public LocalDate getExpirationDate() {
+	public boolean getExpirationDate() {
 		return expirationDate;
 	}
 
-	public void setExpirationDate(LocalDate expirationDate) {
+	public void setExpirationDate(boolean expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 
@@ -108,6 +110,10 @@ public class Product {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	
+	public String getProducer() {
+		return this.producer;
 	}
 
 	@Override

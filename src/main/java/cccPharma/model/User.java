@@ -14,20 +14,29 @@ public class User {
     
     private String login;
     private String password;
+    private String email;
     private boolean isAdmin;
     
 	public User() {
 	
 	}
 	
-	public User(String login, String password) {
+	public User(String login, String password, String email) {
 		this.login = login;
 		this.password = password;
+		this.email = email;
 		if(login.equals("admin")) {
 			this.isAdmin = true;
 		}else {
 			this.isAdmin = false;
 		}
+	}
+	
+	public User(String login, String password, String email, boolean isAdmin) {
+		this.login = login;
+		this.password = password;
+		this.email = email;
+		this.isAdmin = isAdmin;
 	}
 
 	public String getLogin() {
