@@ -17,6 +17,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById((long)id).get();
     }
 
+    private Product updateOrCreate(Product product) {
+    	
+    	return null;
+    }
+    
     public Product createProduct(Product product) {
     	return productRepository.save(product);
     }
