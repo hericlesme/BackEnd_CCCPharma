@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Product {
@@ -21,7 +23,11 @@ public class Product {
     private double price;
     private String image_path;
     private String description;
-    private Long category_id;
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+    
     private LocalDate expirationDate;
     private int stock;
 
@@ -35,12 +41,12 @@ public class Product {
     
 	public Product() {}
     
-    public Product(String name, double price, String image_path, String description, Long category_id, LocalDate expirationDate, int stock) {
+    public Product(String name, double price, String image_path, String description, Category category, LocalDate expirationDate, int stock) {
         this.name = name;
         this.price = price;
         this.image_path = image_path;
         this.description = description;
-        this.category_id = category_id;
+        this.category = category;
         this.expirationDate = expirationDate;
     }
     
@@ -80,20 +86,12 @@ public class Product {
 		this.description = description;
 	}
 
-	public Long getCategoryId() {
-		return this.category_id;
+	public Category getCategory() {
+		return this.category;
 	}
 	
-	public void setCategoryId(Long newId) {
-		this.category_id = newId;
-	}
-	
-	public Long getCategory_id() {
-		return category_id;
-	}
-
-	public void setCategory_id(Long category_id) {
-		this.category_id = category_id;
+	public void setCategoryId(Category category) {
+		this.category = category;
 	}
 
 	public LocalDate getExpirationDate() {

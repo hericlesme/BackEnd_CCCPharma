@@ -2,12 +2,14 @@ package cccPharma.service;
 
 import cccPharma.model.User;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cccPharma.dao.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+	@Autowired
 	private UserRepository userRepository;
 	
     public User getUser(int id) {

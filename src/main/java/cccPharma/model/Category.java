@@ -1,9 +1,12 @@
 package cccPharma.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Category {
@@ -14,16 +17,18 @@ public class Category {
     
     private String name;
     private String description;
-    private Long id_desconto;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "discount_id", nullable = false)
+    private Discount discount;
     
     public Category() {
     	
     }
     
-    public Category(String name, String description, Long id_desconto) {
+    public Category(String name, String description, Discount discount) {
     	this.name = name;
     	this.description = description;
-    	this.id_desconto = id_desconto;
+    	this.discount = discount;
     }
 
 	public Long getId() {
@@ -46,12 +51,12 @@ public class Category {
 		this.description = description;
 	}
 
-	public Long getId_desconto() {
-		return id_desconto;
+	public Discount getDiscount() {
+		return discount;
 	}
 
-	public void setId_desconto(Long id_desconto) {
-		this.id_desconto = id_desconto;
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
 	}
 
 	@Override
@@ -59,8 +64,8 @@ public class Category {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((discount == null) ? 0 : discount.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((id_desconto == null) ? 0 : id_desconto.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -79,15 +84,15 @@ public class Category {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
+		if (discount == null) {
+			if (other.discount != null)
+				return false;
+		} else if (!discount.equals(other.discount))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (id_desconto == null) {
-			if (other.id_desconto != null)
-				return false;
-		} else if (!id_desconto.equals(other.id_desconto))
 			return false;
 		if (name == null) {
 			if (other.name != null)
