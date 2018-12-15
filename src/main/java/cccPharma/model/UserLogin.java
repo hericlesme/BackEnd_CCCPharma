@@ -1,5 +1,8 @@
 package cccPharma.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserLogin {
 
 	private String login;

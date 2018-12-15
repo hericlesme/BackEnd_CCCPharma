@@ -13,11 +13,6 @@ public class DiscountServiceImpl implements DiscountService{
 
     @Override
     public Discount SaveOrUpdate(Discount discount) {
-        for(Discount d : discountRepository.findAll()) {
-            if(d.equals(discount)) {
-                return d;
-            }
-        }
         discountRepository.save(discount);
         return discount;
     }

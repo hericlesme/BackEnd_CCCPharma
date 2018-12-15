@@ -18,11 +18,6 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public Category SaveOrUpdate(Category category) {
         discountService.SaveOrUpdate(category.getDiscount());
-        for(Category c : categoryRepository.findAll()) {
-            if(c.equals(category)) {
-                return c;
-            }
-        }
         categoryRepository.save(category);
         return category;
     }

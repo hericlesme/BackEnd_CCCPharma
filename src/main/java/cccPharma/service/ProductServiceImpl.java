@@ -23,20 +23,15 @@ public class ProductServiceImpl implements ProductService {
     public Product getProduct(int id) {
         return productRepository.findById((long)id).get();
     }
-
-    private Product updateOrCreate(Product product) {
-        categoryService.SaveOrUpdate(product.getCategory());
-        productRepository.save(product);
-    	return product;
-    }
     
     public Product createProduct(Product product) {
-
-    	return productRepository.save(updateOrCreate(product));
+        categoryService.SaveOrUpdate(product.getCategory());
+    	return productRepository.save(product);
     }
 
     public Product updateProduct(Product product) {
-    	return productRepository.save(updateOrCreate(product));
+        categoryService.SaveOrUpdate(product.getCategory());
+        return productRepository.save(product);
     }
 
     public List<Product> getAllProducts() {
