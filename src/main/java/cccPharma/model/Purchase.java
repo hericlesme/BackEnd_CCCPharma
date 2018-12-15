@@ -19,57 +19,21 @@ public class Purchase {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private Long idUser;
+    private String barCode;
+    private Product product;
     private LocalDate purchasedDate;
     private double totalCost;
-    
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            })
-    @JoinTable(name = "purchase_products",
-            joinColumns = { @JoinColumn(name = "purchase_id") },
-            inverseJoinColumns = { @JoinColumn(name = "product_id") })
-    private List<Product> products;
-    
+    private int quantify;
     
     public Purchase() {
     	
     }
     
-    public Purchase(Long idUser, LocalDate purshasedDate, double totalCost) {
-    	this.idUser = idUser;
-    	this.purchasedDate = purchasedDate;
-    	this.totalCost = totalCost;
+    public Purchase(String barcode, Product product, int quantify) {
+    	this.purchasedDate = LocalDate.now();
+    	this.totalCost = product.getPrice() * quantify;
+    	this.barCode = barcode;
+    	this.product = product;
+    	this.quantify = quantify;
     }
-
-	public Long getId() {
-		return id;
-	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	public Long getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
-	}
-
-	public LocalDate getPurchasedDate() {
-		return purchasedDate;
-	}
-
-	public void setPurchasedDate(LocalDate purchasedDate) {
-		this.purchasedDate = purchasedDate;
-	}
-    
 }

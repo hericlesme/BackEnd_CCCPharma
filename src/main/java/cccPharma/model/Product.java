@@ -31,14 +31,6 @@ public class Product {
     private String producer;
     private boolean expirationDate;
     private int stock;
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            },
-            mappedBy = "products")
-    private List<Purchase> purchases;
     
 	public Product() {}
     
@@ -92,7 +84,7 @@ public class Product {
 		return this.category;
 	}
 	
-	public void setCategoryId(Category category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 

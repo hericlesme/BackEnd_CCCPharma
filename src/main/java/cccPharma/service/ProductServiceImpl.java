@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     	
     	for(Category a : categoryRepository.findAll()) {
     		if(a.equals(product.getCategory())) {
-    			product.setCategoryId(a);
+    			product.setCategory(a);
     		}
     	}
     	return product;
