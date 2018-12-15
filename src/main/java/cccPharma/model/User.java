@@ -15,10 +15,10 @@ public class User {
     private String login;
     private String password;
     private String email;
-    private boolean isAdmin;
+    	private boolean isAdmin;
     
 	public User() {
-	
+
 	}
 	
 	public User(String login, String password, String email) {
