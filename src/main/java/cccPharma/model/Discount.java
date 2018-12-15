@@ -16,15 +16,13 @@ public class Discount {
     private Long id;
 
     private double fraction;
-    private String description;
     
     public Discount() {
     	
     }
     
-    public Discount(double fraction, String description) {
+    public Discount(double fraction) {
     	this.fraction = fraction;
-    	this.description = description;
     }
 
 	public Long getId() {
@@ -39,19 +37,10 @@ public class Discount {
 		this.fraction = fraction;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(fraction);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -68,11 +57,6 @@ public class Discount {
 		if (getClass() != obj.getClass())
 			return false;
 		Discount other = (Discount) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (Double.doubleToLongBits(fraction) != Double.doubleToLongBits(other.fraction))
 			return false;
 		return true;

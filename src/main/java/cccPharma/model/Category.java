@@ -19,7 +19,6 @@ public class Category {
     private Long id;
     
     private String name;
-    private String description;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "discount_id", nullable = false)
     private Discount discount;
@@ -28,9 +27,8 @@ public class Category {
     	
     }
     
-    public Category(String name, String description, Discount discount) {
+    public Category(String name, Discount discount) {
     	this.name = name;
-    	this.description = description;
     	this.discount = discount;
     }
 
@@ -46,14 +44,6 @@ public class Category {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public Discount getDiscount() {
 		return discount;
 	}
@@ -66,7 +56,6 @@ public class Category {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((discount == null) ? 0 : discount.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -82,11 +71,6 @@ public class Category {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (discount == null) {
 			if (other.discount != null)
 				return false;
