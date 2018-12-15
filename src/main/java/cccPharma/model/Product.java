@@ -30,7 +30,7 @@ public class Product {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
             },
-            mappedBy = "tags")
+            mappedBy = "products")
     private List<Purchase> purchases;
     
 	public Product() {}
