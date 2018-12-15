@@ -35,7 +35,7 @@ public class ProductREST {
             Product createdProduct = productService.createProduct(product);
             return new ResponseEntity<Object>(createdProduct, HttpStatus.CREATED);
 
-        } catch (Exception e){ 
+        } catch (Exception e){
             return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

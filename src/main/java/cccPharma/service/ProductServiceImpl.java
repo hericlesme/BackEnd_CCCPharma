@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-	@Autowired
+    @Autowired
 	private ProductRepository productRepository;
 	
     public Product getProduct(int id) {
@@ -25,7 +25,6 @@ public class ProductServiceImpl implements ProductService {
     public Product createProduct(Product product) {
     	return productRepository.save(product);
     }
-
 
     public Product updateProduct(Product product) {
     	return productRepository.save(product);
