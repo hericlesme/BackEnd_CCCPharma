@@ -89,11 +89,6 @@ public class Category {
 				return false;
 		} else if (!discount.equals(other.discount))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;

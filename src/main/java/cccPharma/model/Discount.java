@@ -72,11 +72,6 @@ public class Discount {
 			return false;
 		if (Double.doubleToLongBits(fraction) != Double.doubleToLongBits(other.fraction))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		return true;
 	}
     
