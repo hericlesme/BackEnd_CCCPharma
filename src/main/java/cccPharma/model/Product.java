@@ -22,6 +22,7 @@ public class Product {
     
     private String name;
     private double price;
+    private String bar_code;
     private String image_path;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -34,9 +35,10 @@ public class Product {
     
 	public Product() {}
     
-    public Product(String name, double price, String image_path, Category category, String producer, boolean expirationDate, int stock) {
+    public Product(String name, double price, String bar_code, String image_path, Category category, String producer, boolean expirationDate, int stock) {
         this.name = name;
         this.price = price;
+        this.bar_code = bar_code;
         this.image_path = image_path;
         this.category = category;
         this.expirationDate = expirationDate;
@@ -97,6 +99,18 @@ public class Product {
 	
 	public String getProducer() {
 		return this.producer;
+	}
+	
+	public String getBar_code() {
+		return bar_code;
+	}
+
+	public void setBar_code(String bar_code) {
+		this.bar_code = bar_code;
+	}
+
+	public void setProducer(String producer) {
+		this.producer = producer;
 	}
 
 	@Override

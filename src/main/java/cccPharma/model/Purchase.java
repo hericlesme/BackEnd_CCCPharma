@@ -35,10 +35,10 @@ public class Purchase {
     	
     }
     
-    public Purchase(String barcode, Product product, int quantify) {
+    public Purchase(Product product, int quantify) {
     	this.purchasedDate = LocalDate.now();
     	this.totalCost = product.getPrice() * quantify;
-    	this.barCode = barcode;
+    	this.barCode = product.getBar_code();
     	this.product = product;
     	this.quantify = quantify;
     }
