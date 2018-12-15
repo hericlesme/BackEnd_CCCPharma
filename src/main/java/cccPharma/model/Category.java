@@ -6,29 +6,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Product {
+public class Category {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
     private String name;
-    private double price;
-    private String image_path;
     private String description;
-    private Long category_id;
+    private Long id_desconto;
     
-	public Product() {}
-    
-    public Product(String name, double price, String image_path, String description, Long category_id) {
-        this.name = name;
-        this.price = price;
-        this.image_path = image_path;
-        this.description = description;
-        this.category_id = category_id;
+    public Category() {
+    	
     }
     
-    public Long getId() {
+    public Category(String name, String description, Long id_desconto) {
+    	this.name = name;
+    	this.description = description;
+    	this.id_desconto = id_desconto;
+    }
+
+	public Long getId() {
 		return id;
 	}
 
@@ -40,22 +38,6 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public String getImage_path() {
-		return image_path;
-	}
-
-	public void setImage_path(String image_path) {
-		this.image_path = image_path;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -64,25 +46,22 @@ public class Product {
 		this.description = description;
 	}
 
-	public Long getCategoryId() {
-		return this.category_id;
+	public Long getId_desconto() {
+		return id_desconto;
 	}
-	
-	public void setCategoryId(Long newId) {
-		this.category_id = newId;
+
+	public void setId_desconto(Long id_desconto) {
+		this.id_desconto = id_desconto;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((image_path == null) ? 0 : image_path.hashCode());
+		result = prime * result + ((id_desconto == null) ? 0 : id_desconto.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(price);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -94,7 +73,7 @@ public class Product {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Category other = (Category) obj;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -105,17 +84,15 @@ public class Product {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (image_path == null) {
-			if (other.image_path != null)
+		if (id_desconto == null) {
+			if (other.id_desconto != null)
 				return false;
-		} else if (!image_path.equals(other.image_path))
+		} else if (!id_desconto.equals(other.id_desconto))
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		return true;
 	}
