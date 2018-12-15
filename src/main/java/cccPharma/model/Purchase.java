@@ -41,6 +41,7 @@ public class Purchase {
     public Purchase(Long idUser, LocalDate purshasedDate, double totalCost) {
     	this.idUser = idUser;
     	this.purchasedDate = purchasedDate;
+    	this.totalCost = totalCost;
     }
 
 	public Long getId() {
