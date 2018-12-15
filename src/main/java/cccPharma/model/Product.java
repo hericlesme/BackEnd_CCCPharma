@@ -1,9 +1,14 @@
 package cccPharma.model;
 
+import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
 
 @Entity
 public class Product {
@@ -17,15 +22,26 @@ public class Product {
     private String image_path;
     private String description;
     private Long category_id;
+    private LocalDate expirationDate;
+    private int stock;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            },
+            mappedBy = "products")
+    private List<Purchase> purchases;
     
 	public Product() {}
     
-    public Product(String name, double price, String image_path, String description, Long category_id) {
+    public Product(String name, double price, String image_path, String description, Long category_id, LocalDate expirationDate, int stock) {
         this.name = name;
         this.price = price;
         this.image_path = image_path;
         this.description = description;
         this.category_id = category_id;
+        this.expirationDate = expirationDate;
     }
     
     public Long getId() {
@@ -72,6 +88,30 @@ public class Product {
 		this.category_id = newId;
 	}
 	
+	public Long getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(Long category_id) {
+		this.category_id = category_id;
+	}
+
+	public LocalDate getExpirationDate() {
+		return expirationDate;
+	}
+
+	public void setExpirationDate(LocalDate expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

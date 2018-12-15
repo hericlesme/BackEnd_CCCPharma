@@ -1,29 +1,31 @@
 package cccPharma.service;
 
 import cccPharma.model.Product;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import org.springframework.stereotype.Service;
+import cccPharma.dao.ProductRepository;
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
+	private ProductRepository productRepository;
+	
     public Product getProduct(int id) {
-        return new Product("Testget", 3.50, "/assets/pasta", "Melhor pasta de dente", 0L);
+        return productRepository.findById((long)id).get();
     }
 
     public Product createProduct(Product product) {
-        return new Product("TestCreate", 3.50, "/assets/pasta", "Melhor pasta de dente", 0L);
+    	return productRepository.save(product);
     }
 
 
     public Product updateProduct(Product product) {
-        return new Product("TesteUpdate", 3.50, "/assets/pasta", "Melhor pasta de dente", 0L);
+    	return productRepository.save(product);
     }
 
     public List<Product> getAllProducts() {
-        return new ArrayList<>();
+        return (List<Product>) productRepository.findAll();
     }
 
 }

@@ -35,8 +35,8 @@ public class ProductREST {
             Product createdProduct = productService.createProduct(product);
             return new ResponseEntity<Object>(createdProduct, HttpStatus.CREATED);
 
-        } catch (Exception e){ // TODO refatorar esse erro
-            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.CREATED);
+        } catch (Exception e){ 
+            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -46,12 +46,12 @@ public class ProductREST {
             Product createdProduct = productService.updateProduct(product);
             return new ResponseEntity<Object>(createdProduct, HttpStatus.OK);
 
-        } catch (Exception e){ // TODO refatorar esse erro
-            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e){
+            return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Object> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return new ResponseEntity<Object>(products, HttpStatus.OK);
