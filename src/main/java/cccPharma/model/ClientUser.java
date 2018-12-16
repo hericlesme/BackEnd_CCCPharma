@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class ClientUser {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,11 +20,11 @@ public class User {
     private String email;
     	private boolean isAdmin;
     
-	public User() {
+	public ClientUser() {
 
 	}
 	
-	public User(String login, String password, String email) {
+	public ClientUser(String login, String password, String email) {
 		this.login = login;
 		this.password = password;
 		this.email = email;
@@ -35,7 +35,7 @@ public class User {
 		}
 	}
 	
-	public User(String login, String password, String email, boolean isAdmin) {
+	public ClientUser(String login, String password, String email, boolean isAdmin) {
 		this.login = login;
 		this.password = password;
 		this.email = email;
@@ -89,7 +89,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		ClientUser other = (ClientUser) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

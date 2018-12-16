@@ -1,6 +1,6 @@
 package cccPharma.rest;
 
-import cccPharma.model.User;
+import cccPharma.model.ClientUser;
 import cccPharma.model.UserLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,8 @@ public class UserREST {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity <Object> getProduct(@RequestBody UserLogin userLogin){
         try {
-            User user = userService.getUserName(userLogin.getLogin());
-            if (user.getPassword().equals(userLogin.getPassword())) {
+            ClientUser clientUser = userService.getUserName(userLogin.getLogin());
+            if (clientUser.getPassword().equals(userLogin.getPassword())) {
             	return new ResponseEntity<Object>("Usuario logado com sucesso!", HttpStatus.OK);
             }else {
             	return new ResponseEntity<Object>("Senha errada!", HttpStatus.BAD_REQUEST);
@@ -34,10 +34,10 @@ public class UserREST {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity <Object> createUser(@RequestBody User user){
+    public ResponseEntity <Object> createUser(@RequestBody ClientUser clientUser){
         try {
-            User createdUser = userService.createUser(user);
-            return new ResponseEntity<Object>(createdUser, HttpStatus.CREATED);
+            ClientUser createdClientUser = userService.createUser(clientUser);
+            return new ResponseEntity<Object>(createdClientUser, HttpStatus.CREATED);
 
         } catch (Exception e){ 
             return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -45,10 +45,10 @@ public class UserREST {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity <Object> updateProduct(@RequestBody User user){
+    public ResponseEntity <Object> updateProduct(@RequestBody ClientUser clientUser){
         try {
-            User createdUser = userService.updateUser(user);
-            return new ResponseEntity<Object>(createdUser, HttpStatus.OK);
+            ClientUser createdClientUser = userService.updateUser(clientUser);
+            return new ResponseEntity<Object>(createdClientUser, HttpStatus.OK);
 
         } catch (Exception e){
             return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -1,15 +1,15 @@
 package cccPharma.service;
 
-import cccPharma.model.User;
+import cccPharma.model.ClientUser;
 
 public interface UserService {
 
-    User getUser(int id);
+    ClientUser getUser(int id);
 
-    User getUserName(String login);
+    ClientUser getUserName(String login);
 
-    User createUser(User user);
+    ClientUser createUser(ClientUser clientUser);
     
-    User updateUser(User user);
+    ClientUser updateUser(ClientUser clientUser);
 
 }
