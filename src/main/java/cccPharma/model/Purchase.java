@@ -1,5 +1,6 @@
 package cccPharma.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
@@ -34,7 +35,8 @@ public class Purchase {
     public Purchase() {
     	
     }
-    
+
+    @JsonCreator
     public Purchase(Product product, int quantify) {
     	this.purchasedDate = LocalDate.now();
     	this.totalCost = product.getPrice() * quantify;
