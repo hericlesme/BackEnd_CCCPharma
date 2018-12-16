@@ -57,7 +57,7 @@ public class ProductREST {
         return new ResponseEntity<Object>(products, HttpStatus.OK);
     }
 
-    @RequestMapping(value="report/", method = RequestMethod.GET)
+    @RequestMapping(value="/report", method = RequestMethod.GET)
     public ResponseEntity<Object> getAllProductsDescriptions() {
         List<String> products = productService.getAllProductsDescriptions();
         return new ResponseEntity<Object>(products, HttpStatus.OK);

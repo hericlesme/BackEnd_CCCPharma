@@ -36,7 +36,7 @@ public class PurchaseREST {
         return new ResponseEntity<Object>(purchases, HttpStatus.OK);
     }
     
-    @RequestMapping(value="report/", method = RequestMethod.GET)
+    @RequestMapping(value="/report", method = RequestMethod.GET)
     public ResponseEntity<Object> getReport() {
         List<String> purchasesReport = purchaseService.getReport();
         return new ResponseEntity<Object>(purchasesReport, HttpStatus.OK);
