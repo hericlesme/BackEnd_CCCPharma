@@ -1,5 +1,6 @@
 package cccPharma.service;
 
+import cccPharma.model.Product;
 import cccPharma.model.Purchase;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Transactional
     public Purchase createPurchase(Purchase purchase) throws EntityNotFoundException {
-        productService.purchaseProduct(purchase.getProduct(), purchase.getQuantify());
+        Product productAtualizado = productService.purchaseProduct(purchase.getProduct(), purchase.getQuantify());
+        purchase.setProduct(productAtualizado);
         return purchaseRepository.save(purchase);
     }
 
