@@ -2,7 +2,6 @@ package cccPharma.service;
 
 import cccPharma.model.Purchase;
 
-import javax.management.InstanceNotFoundException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -15,4 +14,6 @@ public interface PurchaseService {
     Purchase updatePurchase(Purchase product);
 
     List<Purchase> getAllPurchases();
+   
+    List<String> getReport();
 }

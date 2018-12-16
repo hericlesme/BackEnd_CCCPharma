@@ -1,14 +1,16 @@
 package cccPharma.service;
 
+import cccPharma.model.Product;
 import cccPharma.model.Purchase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cccPharma.dao.PurchaseRepository;
 
-import javax.management.InstanceNotFoundException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,7 +28,8 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Transactional
     public Purchase createPurchase(Purchase purchase) throws EntityNotFoundException {
-        productService.purchaseProduct(purchase.getProduct(), purchase.getQuantify());
+        Product productAtualizado = productService.purchaseProduct(purchase.getProduct(), purchase.getQuantity());
+        purchase.setProduct(productAtualizado);
         return purchaseRepository.save(purchase);
     }
 
@@ -38,4 +41,14 @@ public class PurchaseServiceImpl implements PurchaseService {
         return (List<Purchase>) purchaseRepository.findAll();
     }
 
+    public List<String> getReport() {
+    	List<String> ret = new ArrayList<String>();
+    	double totalCost = 0;
+    	for(Purchase p : purchaseRepository.findAll()) {
+    		ret.add(p.toString());
+    		totalCost += p.getTotalCost();
+    	}
+    	ret.add("Receita total: R$" + String.format("%.2f", totalCost));
+    	return ret;
+    }
 }

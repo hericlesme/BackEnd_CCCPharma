@@ -1,19 +1,15 @@
 package cccPharma.service;
 
 import cccPharma.model.Product;
-import cccPharma.model.Category;
-import cccPharma.model.Discount;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cccPharma.dao.ProductRepository;
-import cccPharma.dao.CategoryRepository;
-import cccPharma.dao.DiscountRepository;
 
-import javax.management.InstanceNotFoundException;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -53,19 +49,27 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void purchaseProduct(Product product, int quantify) throws EntityNotFoundException {
+    public Product purchaseProduct(Product product, int quantify) throws EntityNotFoundException {
         Product purchasedProduct = this.getProduct(product.getId());
         this.validateProductPurchase(purchasedProduct, quantify);
         int productStock = purchasedProduct.getStock();
 
         productStock -= quantify;
         purchasedProduct.setStock(productStock);
-        this.updateProduct(purchasedProduct);
+        return this.updateProduct(purchasedProduct);
     }
 
     private void validateProductPurchase(Product purchasedProduct, int quantify) throws InvalidParameterException {
         if (purchasedProduct.getStock() < quantify){
             throw new InvalidParameterException(OUT_OF_STOCK_ERROR_MESSAGE);
         }
+    }
+    
+    public List<String> getAllProductsDescriptions(){
+    	List<String> ret = new ArrayList<String>();
+    	for(Product p : getAllProducts()) {
+    		ret.add(p.toString());
+    	}
+    	return ret;
     }
 }

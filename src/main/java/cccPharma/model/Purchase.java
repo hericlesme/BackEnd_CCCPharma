@@ -1,5 +1,6 @@
 package cccPharma.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
@@ -7,13 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
 import java.time.LocalDate;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -29,18 +27,19 @@ public class Purchase {
     private Product product;
     private LocalDate purchasedDate;
     private double totalCost;
-    private int quantify;
+    private int quantity;
     
     public Purchase() {
     	
     }
-    
-    public Purchase(Product product, int quantify) {
+
+    @JsonCreator
+    public Purchase(Product product, int quantity) {
     	this.purchasedDate = LocalDate.now();
-    	this.totalCost = product.getPrice() * quantify;
+    	this.totalCost = product.getPrice() * quantity;
     	this.barCode = product.getBar_code();
     	this.product = product;
-    	this.quantify = quantify;
+    	this.quantity = quantity;
     }
 
 	public Long getId() {
@@ -83,12 +82,12 @@ public class Purchase {
 		this.totalCost = totalCost;
 	}
 
-	public int getQuantify() {
-		return quantify;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setQuantify(int quantify) {
-		this.quantify = quantify;
+	public void setQuantify(int quantity) {
+		this.quantity = quantity;
 	}
 
 	@Override
@@ -98,7 +97,7 @@ public class Purchase {
 		result = prime * result + ((barCode == null) ? 0 : barCode.hashCode());
 		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		result = prime * result + ((purchasedDate == null) ? 0 : purchasedDate.hashCode());
-		result = prime * result + quantify;
+		result = prime * result + quantity;
 		long temp;
 		temp = Double.doubleToLongBits(totalCost);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -129,11 +128,18 @@ public class Purchase {
 				return false;
 		} else if (!purchasedDate.equals(other.purchasedDate))
 			return false;
-		if (quantify != other.quantify)
+		if (quantity != other.quantity)
 			return false;
 		if (Double.doubleToLongBits(totalCost) != Double.doubleToLongBits(other.totalCost))
 			return false;
 		return true;
 	}
     
+	public String toString() {
+		String ret;
+		ret = "Compradas " + this.quantity + " unidade(s) de " + this.product.getName();
+		ret += " na data " + this.purchasedDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		ret += " o custo total da compra foi de R$" + String.format("%.2f", this.totalCost);
+		return ret;
+	}
 }

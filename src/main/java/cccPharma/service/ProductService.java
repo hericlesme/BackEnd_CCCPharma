@@ -2,7 +2,6 @@ package cccPharma.service;
 
 import cccPharma.model.Product;
 
-import javax.management.InstanceNotFoundException;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
@@ -15,6 +14,8 @@ public interface ProductService {
     Product updateProduct(Product product);
 
     List<Product> getAllProducts();
+    
+    List<String> getAllProductsDescriptions();
 
-    void purchaseProduct(Product product, int quantify) throws EntityNotFoundException;
+    Product purchaseProduct(Product product, int quantify) throws EntityNotFoundException;
 }

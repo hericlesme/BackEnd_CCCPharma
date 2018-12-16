@@ -18,7 +18,7 @@ public class ClientUser {
     private String login;
     private String password;
     private String email;
-    	private boolean isAdmin;
+    private boolean isAdmin;
     
 	public ClientUser() {
 
@@ -68,6 +68,14 @@ public class ClientUser {
 	
 	public Long getId() {
 		return this.id;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
