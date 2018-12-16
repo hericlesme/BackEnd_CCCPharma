@@ -1,14 +1,11 @@
 package cccPharma.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.FetchType;
-import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 
@@ -153,6 +150,14 @@ public class Product {
 		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		String ret = "O produto " + this.name + " com código de barra " + this.bar_code;
+		ret += " foi fabricado por " + this.producer + " no valor de R$" + String.format("%.2f", this.price);
+		ret += ". Quantidade restante no stock: " + this.stock;
+		return ret;
 	}
     
 }

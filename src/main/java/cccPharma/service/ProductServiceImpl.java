@@ -9,6 +9,7 @@ import cccPharma.dao.ProductRepository;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -62,5 +63,13 @@ public class ProductServiceImpl implements ProductService {
         if (purchasedProduct.getStock() < quantify){
             throw new InvalidParameterException(OUT_OF_STOCK_ERROR_MESSAGE);
         }
+    }
+    
+    public List<String> getAllProductsDescriptions(){
+    	List<String> ret = new ArrayList<String>();
+    	for(Product p : getAllProducts()) {
+    		ret.add(p.toString());
+    	}
+    	return ret;
     }
 }

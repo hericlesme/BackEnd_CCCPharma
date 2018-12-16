@@ -1,6 +1,5 @@
 package cccPharma.rest;
 
-import cccPharma.model.Product;
 import cccPharma.model.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import cccPharma.service.PurchaseService;
 
-import java.security.InvalidParameterException;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -36,5 +34,11 @@ public class PurchaseREST {
     public ResponseEntity<Object> getAllPurchases() {
         List<Purchase> purchases = purchaseService.getAllPurchases();
         return new ResponseEntity<Object>(purchases, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="report/", method = RequestMethod.GET)
+    public ResponseEntity<Object> getReport() {
+        List<String> purchasesReport = purchaseService.getReport();
+        return new ResponseEntity<Object>(purchasesReport, HttpStatus.OK);
     }
 }

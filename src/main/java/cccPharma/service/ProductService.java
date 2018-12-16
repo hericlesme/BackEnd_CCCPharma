@@ -14,6 +14,8 @@ public interface ProductService {
     Product updateProduct(Product product);
 
     List<Product> getAllProducts();
+    
+    List<String> getAllProductsDescriptions();
 
     Product purchaseProduct(Product product, int quantify) throws EntityNotFoundException;
 }
