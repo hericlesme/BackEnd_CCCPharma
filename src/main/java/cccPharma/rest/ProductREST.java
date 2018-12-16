@@ -19,7 +19,7 @@ public class ProductREST {
     private ProductService productService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity <Object> getProduct(@PathVariable("id") int id){
+    public ResponseEntity <Object> getProduct(@PathVariable("id") long id){
         try {
             Product product = productService.getProduct(id);
             return new ResponseEntity<Object>(product, HttpStatus.OK);

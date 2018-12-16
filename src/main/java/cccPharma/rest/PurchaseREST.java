@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import cccPharma.service.PurchaseService;
 
+import java.security.InvalidParameterException;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -21,18 +22,18 @@ public class PurchaseREST {
     private PurchaseService purchaseService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity <Object> createUser(@RequestBody Purchase purchase){
+    public ResponseEntity <Object> createPurchase(@RequestBody Purchase purchase){
         try {
             Purchase createdPurchase = purchaseService.createPurchase(purchase);
             return new ResponseEntity<Object>(createdPurchase, HttpStatus.CREATED);
 
-        } catch (Exception e){
+        } catch (EntityNotFoundException e){
             return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Object> getAllProducts() {
+    public ResponseEntity<Object> getAllPurchases() {
         List<Purchase> purchases = purchaseService.getAllPurchases();
         return new ResponseEntity<Object>(purchases, HttpStatus.OK);
     }
