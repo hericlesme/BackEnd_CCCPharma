@@ -49,18 +49,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product purchaseProduct(Product product, int quantify) throws EntityNotFoundException {
+    public Product purchaseProduct(Product product, int quantity) throws EntityNotFoundException {
         Product purchasedProduct = this.getProduct(product.getId());
-        this.validateProductPurchase(purchasedProduct, quantify);
+        this.validateProductPurchase(purchasedProduct, quantity);
         int productStock = purchasedProduct.getStock();
 
-        productStock -= quantify;
+        productStock -= quantity;
         purchasedProduct.setStock(productStock);
         return this.updateProduct(purchasedProduct);
     }
 
-    private void validateProductPurchase(Product purchasedProduct, int quantify) throws InvalidParameterException {
-        if (purchasedProduct.getStock() < quantify){
+    private void validateProductPurchase(Product purchasedProduct, int quantity) throws InvalidParameterException {
+        if (purchasedProduct.getStock() < quantity){
             throw new InvalidParameterException(OUT_OF_STOCK_ERROR_MESSAGE);
         }
     }
