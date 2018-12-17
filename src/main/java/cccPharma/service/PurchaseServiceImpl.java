@@ -29,7 +29,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Transactional
     public Purchase createPurchase(Purchase purchase) throws EntityNotFoundException {
         Product productAtualizado = productService.purchaseProduct(purchase.getProduct(), purchase.getQuantity());
-        purchase.setProduct(productAtualizado);
+        purchase = new Purchase(productAtualizado, purchase.getQuantity());
         return purchaseRepository.save(purchase);
     }
 
