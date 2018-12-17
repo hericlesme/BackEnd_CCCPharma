@@ -86,7 +86,7 @@ public class Purchase {
 		return quantity;
 	}
 
-	public void setQuantify(int quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
